@@ -47,6 +47,7 @@ main{
     height: 50px;
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 10%;
 }
 .text2{
@@ -174,6 +175,18 @@ a{
 }
 
 #bilans{
-    font-size: 120%;
-   
+    padding: 4px 10px;
+    border-radius: 8px;
+    background-color: rgb(43, 42, 43);
+    color: white;
+    font-size: 100%;
+    font-weight: 900;
+    text-align: center;
+}
+
+.balance{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
 }

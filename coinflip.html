@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Flip</title>
+    <link rel="stylesheet" href="styleglowna.css">
+    <link rel="stylesheet" href="stylecoin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    <header> <h1 class="text1">COIN FLIP</h1>
+        
+        <div id="div1">
+            <p class="text2"> <a href="Stronaglowna.html">Strona glowna</a> </p>
+            <p class="text2"> <a href="">Promocje</a></p>
+            <p class="text2"> <a href="">Balans :</a></p>
+        </div>   
+        
+        <div id="div2">
+            
+        </div>
+
+
+    </header>
+
+    <main>
+
+        
+
+
+<div id="container2">
+
+    <div id="div3">
+        <div id="orzel">
+            <div id="przod">ORZEŁ</div>
+            <div id="tyl">RESZKA</div>
+        </div>
+
+        <p id="wynik">Wybierz orła lub reszkę</p>
+    </div>
+
+    <div id="div4">
+        <button class="przycisk1" onclick="wybierz('orzel')">Orzeł</button>
+        <button class="przycisk1" onclick="wybierz('reszka')">Reszka</button>
+
+        <br>
+
+        <input type="number" id="bet" placeholder="Bet" min="1">
+
+        <br>
+
+        <button id="losuj" onclick="losowanie()">Losuj</button>
+    </div>
+
+</div>
+
+
+    </main>
+
+
+
+    
+
+</body>
+<script src="coinflip.js" defer></script>
+</html>

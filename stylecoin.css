@@ -5,6 +5,13 @@
     margin: auto;
     margin-top: 3%;
     
+
+}
+#main2{
+    background-color: rgb(75, 72, 72);
+    width: 100%;
+    height: 814px;
+    display: flow-root;
 }
 
 #div3 {
@@ -89,6 +96,15 @@
 .przycisk1:hover {
     background: rgb(85, 83, 85);
     color: white;
+}
+
+.przycisk1.wybrany,
+.przycisk1[aria-pressed="true"] {
+    background: rgb(85, 83, 85);
+    color: white;
+    border: 2px solid rgb(150, 147, 150);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    transform: scale(1.03);
 }
 
 #bet {

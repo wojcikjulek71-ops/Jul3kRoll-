@@ -13,22 +13,23 @@
 </head>
 <body>
 
-    <header> <h1 class="text1">COIN FLIP</h1>
-        
+    <header>
+        <h1 class="text1">COIN FLIP</h1>
         <div id="div1">
             <p class="text2"> <a href="Stronaglowna.html">Strona glowna</a> </p>
             <p class="text2"> <a href="">Promocje</a></p>
-            <p class="text2"> <a href="">Balans :</a></p>
-        </div>   
-        
-        <div id="div2">
-            
+            <div class="text2 balance">
+                <span>Bilans:</span>
+                <span id="bilans"></span>
+                <button class="balance-reset" type="button" onclick="window.balance.reset()">Reset</button>
+                <span>Rekord:</span>
+                <span id="rekord"></span>
+            </div>
         </div>
-
-
+        <div id="div2"></div>
     </header>
 
-    <main>
+    <main id="main2">
 
         
 
@@ -45,12 +46,12 @@
     </div>
 
     <div id="div4">
-        <button class="przycisk1" onclick="wybierz('orzel')">Orzeł</button>
-        <button class="przycisk1" onclick="wybierz('reszka')">Reszka</button>
+        <button class="przycisk1" type="button" data-side="orzel" aria-pressed="false" onclick="wybierz('orzel')">Orzeł</button>
+        <button class="przycisk1" type="button" data-side="reszka" aria-pressed="false" onclick="wybierz('reszka')">Reszka</button>
 
         <br>
 
-        <input type="number" id="bet" placeholder="Bet" min="1">
+        <input type="number" id="bet" placeholder="Stawka" min="1" step="1">
 
         <br>
 
@@ -67,5 +68,6 @@
     
 
 </body>
+<script src="main.js" defer></script>
 <script src="coinflip.js" defer></script>
 </html>

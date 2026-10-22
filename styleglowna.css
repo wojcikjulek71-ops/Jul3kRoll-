@@ -8,7 +8,6 @@ header{
     width: 100%;
     height: 150px;
     color: white;
-    
 }
 .text1{
     background-color: black;
@@ -18,9 +17,8 @@ header{
     margin-top: 2%;
     border-radius: 20px;
     text-decoration: underline;
-    
 }
-main{
+#main1{
     background-color: rgb(75, 72, 72);
     width: 100%;
     height: 1600px;
@@ -39,16 +37,16 @@ main{
 }
 
 #div1{
-    
     float: right;
     margin-top: 2%;
     background-color: rgb(94, 90, 90);
-    width: 40%;
+    width: 48%;
     height: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10%;
+    justify-content: space-around;
+    gap: 2%;
 }
 .text2{
     font-family: "Space Grotesk", sans-serif;
@@ -187,6 +185,22 @@ a{
 .balance{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
     white-space: nowrap;
+    font-size: clamp(14px, 1.3vw, 18px);
+}
+
+.balance-reset{
+    padding: 4px 7px;
+    border: 0;
+    border-radius: 8px;
+    background-color: rgb(43, 42, 43);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.balance-reset:hover{
+    background-color: rgb(70, 68, 70);
 }

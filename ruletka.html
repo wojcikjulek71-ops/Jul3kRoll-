@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruletka</title>
+    <link rel="stylesheet" href="styleglowna.css">
+    <link rel="stylesheet" href="ruletka.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    <header>
+        <h1 class="text1">RULETKA EUROPEJSKA</h1>
+        <div id="div1">
+            <p class="text2"> <a href="Stronaglowna.html">Strona główna</a> </p>
+            <p class="text2"> <a href="">Promocje</a></p>
+            <div class="text2 balance">
+                <span>Bilans:</span>
+                <span id="bilans"></span>
+                <button class="balance-reset" type="button" onclick="window.balance.reset()">Reset</button>
+                <span>Rekord:</span>
+                <span id="rekord"></span>
+            </div>
+        </div>
+        <div id="div2"></div>
+    </header>
+
+    <main id="roulette-main">
+        <section class="roulette-layout" aria-label="Ruletka europejska">
+            <div class="roulette-wheel-area">
+                <div class="wheel-pointer" aria-hidden="true"></div>
+                <div id="roulette-wheel" class="roulette-wheel" aria-label="Roulette wheel">
+                    <div class="wheel-hub" aria-hidden="true"></div>
+                </div>
+                <p id="roulette-result" aria-live="polite">Postaw zakłady i zakręć kołem</p>
+                <div class="roulette-history">
+                    <span>Ostatnie wyniki:</span>
+                    <ol id="roulette-history"></ol>
+                </div>
+            </div>
+
+            <section class="roulette-table-area" aria-label="Stół do obstawiania">
+                <div class="bet-controls">
+                    <span id="chip-label">Wybierz żeton:</span>
+                    <div class="chip-rack" role="group" aria-labelledby="chip-label">
+                        <button class="chip-option chip-1" type="button" data-chip="1" aria-pressed="false">1</button>
+                        <button class="chip-option chip-5" type="button" data-chip="5" aria-pressed="false">5</button>
+                        <button class="chip-option chip-10 wybrany" type="button" data-chip="10" aria-pressed="true">10</button>
+                        <button class="chip-option chip-25" type="button" data-chip="25" aria-pressed="false">25</button>
+                        <button class="chip-option chip-100" type="button" data-chip="100" aria-pressed="false">100</button>
+                    </div>
+                    <button id="eraser-tool" type="button" aria-pressed="false">Gumka</button>
+                    <button id="clear-bets" type="button">Wyczyść zakłady</button>
+                    <span>Suma stawek: <strong id="total-bet">0</strong></span>
+                </div>
+
+                <div class="roulette-table">
+                    <button class="bet-spot green zero-bet" type="button" data-bet="number:0" aria-label="Bet on 0">0</button>
+                    <div class="number-grid" id="number-grid" aria-label="Numbers 1 to 36"></div>
+                    <div class="outside-bets" aria-label="Zakłady zewnętrzne">
+                        <button class="bet-spot" type="button" data-bet="low">1-18</button>
+                        <button class="bet-spot red" type="button" data-bet="red">RED</button>
+                        <button class="bet-spot" type="button" data-bet="odd">ODD</button>
+                        <button class="bet-spot" type="button" data-bet="even">EVEN</button>
+                        <button class="bet-spot black" type="button" data-bet="black">BLACK</button>
+                        <button class="bet-spot" type="button" data-bet="high">19-36</button>
+                        <button class="bet-spot dozen-bet" type="button" data-bet="dozen:1">1ST 12</button>
+                        <button class="bet-spot dozen-bet" type="button" data-bet="dozen:2">2ND 12</button>
+                        <button class="bet-spot dozen-bet" type="button" data-bet="dozen:3">3RD 12</button>
+                    </div>
+                </div>
+
+                <p class="roulette-help">Wybierz żeton, a następnie kliknij pole, aby postawić zakład. Numery płacą 35:1, tuziny 2:1, a pozostałe zakłady 1:1. Zakłady pozostają na planszy do czasu ich wyczyszczenia.</p>
+                <button id="spin-roulette" type="button">Zakręć kołem</button>
+            </section>
+        </section>
+    </main>
+
+
+
+    
+
+</body>
+<script src="main.js" defer></script>
+<script src="ruletka.js" defer></script>
+</html>

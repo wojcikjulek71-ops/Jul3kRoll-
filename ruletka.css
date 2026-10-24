@@ -318,6 +318,15 @@
     text-align: center;
 }
 
+.roulette-warning{
+    min-height: 1.3em;
+    margin: 6px 0 0;
+    color: #ffe29a;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+}
+
 #spin-roulette:disabled,
 .bet-spot:disabled,
 #eraser-tool:disabled,

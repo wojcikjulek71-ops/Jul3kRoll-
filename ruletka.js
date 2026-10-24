@@ -10,6 +10,7 @@ const numberGrid = document.getElementById("number-grid");
 const wheel = document.getElementById("roulette-wheel");
 const totalBetDisplay = document.getElementById("total-bet");
 const resultDisplay = document.getElementById("roulette-result");
+const betWarningDisplay = document.getElementById("roulette-bet-warning");
 const spinButton = document.getElementById("spin-roulette");
 const historyList = document.getElementById("roulette-history");
 let spinning = false;
@@ -92,7 +93,14 @@ function renderBets() {
         }
     });
     totalBetDisplay.textContent = getTotalBet().toLocaleString("en-US");
-    spinButton.disabled = spinning || bets.size === 0;
+    const canAffordSpin = getTotalBet() <= window.balance.get();
+    spinButton.disabled = spinning || bets.size === 0 || !canAffordSpin;
+    spinButton.title = bets.size > 0 && !canAffordSpin
+        ? "Bilans jest mniejszy niż suma zakładów. Zmniejsz lub wyczyść zakłady."
+        : "";
+    betWarningDisplay.textContent = bets.size > 0 && !canAffordSpin
+        ? "Bilans jest mniejszy niż suma zakładów. Zmniejsz lub wyczyść zakłady."
+        : "";
 }
 
 function placeBet(key) {
@@ -172,9 +180,18 @@ function finishSpin(number, totalStake, placedBets) {
         resultDisplay.textContent = "Błąd wypłaty. Stawki zostały zwrócone.";
     } else {
         window.balance.set(window.balance.get() + payout);
-        resultDisplay.textContent = payout > 0
-            ? "Wynik: " + number + " (" + numberColorName(number) + ") — wygrana " + payout.toLocaleString("pl-PL")
-            : "Wynik: " + number + " (" + numberColorName(number) + ") — brak wygranej";
+        const netResult = payout - totalStake;
+        const outcome = netResult > 0
+            ? "zysk: " + netResult.toLocaleString("pl-PL")
+            : netResult === 0
+                ? "zwrot stawek"
+                : "strata: " + Math.abs(netResult).toLocaleString("pl-PL");
+        const payoutText = payout > 0
+            ? " (wypłata: " + payout.toLocaleString("pl-PL") + ")"
+            : "";
+        resultDisplay.textContent =
+            "Wynik: " + number + " (" + numberColorName(number) + ") — "
+                + outcome + payoutText;
     }
 
     addHistory(number);
@@ -194,8 +211,15 @@ function spinRoulette() {
     if (spinning || bets.size === 0) return;
 
     const totalStake = getTotalBet();
-    const placedBets = new Map(bets);
     const currentBalance = window.balance.get();
+    if (totalStake > currentBalance) {
+        betWarningDisplay.textContent =
+            "Bilans jest mniejszy niż suma zakładów. Zmniejsz lub wyczyść zakłady.";
+        renderBets();
+        return;
+    }
+
+    const placedBets = new Map(bets);
     const possiblePayouts = EUROPEAN_WHEEL_ORDER.map((number) => {
         let payout = 0;
         for (const [key, amount] of placedBets) {
@@ -274,4 +298,5 @@ document.getElementById("clear-bets").addEventListener("click", () => {
     renderBets();
 });
 spinButton.addEventListener("click", spinRoulette);
+window.addEventListener("storage", renderBets);
 renderBets();

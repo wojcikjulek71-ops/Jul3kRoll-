@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="styleglowna.css">
+    <link rel="stylesheet" href="blackjack.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1 class="text1">BLACKJACK</h1>
+        <div id="div1">
+            <p class="text2"><a href="Stronaglowna.html">Strona główna</a></p>
+            <p class="text2"><a href="">Promocje</a></p>
+            <div class="text2 balance">
+                <span>Bilans:</span>
+                <span id="bilans"></span>
+                <button class="balance-reset" type="button" onclick="window.balance.reset()">Reset</button>
+                <span>Rekord:</span>
+                <span id="rekord"></span>
+            </div>
+        </div>
+        <div id="div2"></div>
+    </header>
+
+    <main id="blackjack-main">
+        <section class="blackjack-table" aria-label="Stół do blackjacka">
+            <section class="hand" aria-labelledby="dealer-label">
+                <h2 id="dealer-label">Krupier <span id="dealer-score"></span></h2>
+                <div id="dealer-cards" class="cards" aria-live="polite"></div>
+            </section>
+
+            <p id="blackjack-result" aria-live="polite">Ustaw stawkę i rozdaj karty.</p>
+
+            <section class="hand" aria-labelledby="player-label">
+                <h2 id="player-label">Twoje karty</h2>
+                <div id="player-hands" class="player-hands" aria-live="polite"></div>
+            </section>
+
+            <div class="blackjack-controls">
+                <label for="blackjack-bet">Stawka</label>
+                <input id="blackjack-bet" type="number" min="1" step="1" value="10">
+                <button id="deal-blackjack" type="button">Rozdaj</button>
+                <button id="hit-blackjack" type="button" disabled>Dobierz</button>
+                <button id="stand-blackjack" type="button" disabled>Stój</button>
+            </div>
+            <p class="blackjack-help">Celem jest uzyskanie wyniku bliższego 21 niż krupier, bez przekroczenia 21. Krupier dobiera do 16 i stoi na 17. Blackjack wypłaca 3:2, zwykła wygrana 1:1.</p>
+        </section>
+    </main>
+
+    <script src="main.js" defer></script>
+    <script src="blackjack.js" defer></script>
+</body>
+</html>

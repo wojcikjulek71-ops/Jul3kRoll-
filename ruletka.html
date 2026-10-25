@@ -19,9 +19,9 @@
             <p class="text2"> <a href="Stronaglowna.html">Strona główna</a> </p>
             <p class="text2"> <a href="bank.html">Bank</a></p>
             <div class="text2 balance">
-                <span>Bilans:</span>
+                <span>Gotówka:</span>
                 <span id="bilans"></span>
-                <button class="balance-reset" type="button" onclick="window.balance.reset()">Reset</button>
+                <button class="balance-reset" type="button" title="Resetuj gotówkę i saldo bankowe" onclick="window.balance.reset()">Reset</button>
                 <span>Rekord:</span>
                 <span id="rekord"></span>
             </div>
@@ -33,7 +33,7 @@
         <section class="roulette-layout" aria-label="Ruletka europejska">
             <div class="roulette-wheel-area">
                 <div class="wheel-pointer" aria-hidden="true"></div>
-                <div id="roulette-wheel" class="roulette-wheel" aria-label="Roulette wheel">
+                <div id="roulette-wheel" class="roulette-wheel" aria-label="Koło ruletki">
                     <div class="wheel-hub" aria-hidden="true"></div>
                 </div>
                 <p id="roulette-result" aria-live="polite">Postaw zakłady i zakręć kołem</p>
@@ -92,7 +92,7 @@
 
     
 
+    <script src="main.js" defer></script>
+    <script src="ruletka.js" defer></script>
 </body>
-<script src="main.js" defer></script>
-<script src="ruletka.js" defer></script>
 </html>

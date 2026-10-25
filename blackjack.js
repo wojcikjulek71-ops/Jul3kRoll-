@@ -238,13 +238,19 @@ function startRound() {
         betInput.focus();
         return;
     }
+    if (nextStake % 2 !== 0) {
+        resultDisplay.textContent =
+            "Stawka musi być parzysta, aby wypłata blackjacka 3:2 była dokładna.";
+        betInput.focus();
+        return;
+    }
     if (nextStake > balance) {
-        resultDisplay.textContent = "Stawka nie może być większa niż Twój bilans.";
+        resultDisplay.textContent = "Stawka nie może być większa niż Twoja gotówka.";
         betInput.focus();
         return;
     }
     if (!Number.isSafeInteger(balance - nextStake + Math.ceil(nextStake * 2.5))) {
-        resultDisplay.textContent = "Ta stawka może przekroczyć maksymalny obsługiwany bilans.";
+        resultDisplay.textContent = "Ta stawka może przekroczyć maksymalną obsługiwaną kwotę gotówki.";
         betInput.focus();
         return;
     }

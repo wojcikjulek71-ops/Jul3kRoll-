@@ -492,3 +492,9 @@
         line-height: 12px;
     }
 }
+
+@media (prefers-reduced-motion: reduce){
+    .roulette-wheel{
+        transition-duration: 0.01ms;
+    }
+}

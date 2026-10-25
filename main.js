@@ -72,6 +72,7 @@ function setBalance(balance) {
         localStorage.setItem(RECORD_STORAGE_KEY, String(balanceRecord));
     }
     renderBalance();
+    window.dispatchEvent(new Event("balancechange"));
 }
 
 window.balance = {
@@ -166,7 +167,9 @@ if (localStorage.getItem(BANK_STORAGE_KEY) === null
 
 window.addEventListener("storage", (event) => {
     if (event.key === BALANCE_STORAGE_KEY) {
-        const balance = Number(event.newValue);
+        const balance = event.newValue === null
+            ? STARTING_BALANCE
+            : Number(event.newValue);
         currentBalance = Number.isSafeInteger(balance) && balance >= 0
             ? balance
             : STARTING_BALANCE;

@@ -35,13 +35,13 @@ function losowanie() {
     }
 
     if (stawka > bilans) {
-        alert("Stawka nie może być większa niż Twój bilans.");
+        alert("Stawka nie może być większa niż Twoja gotówka.");
         poleStawki.focus();
         return;
     }
 
     if (bilans + stawka > Number.MAX_SAFE_INTEGER) {
-        alert("Ta stawka może przekroczyć maksymalny obsługiwany bilans.");
+        alert("Ta stawka może przekroczyć maksymalną obsługiwaną kwotę gotówki.");
         poleStawki.focus();
         return;
     }
@@ -61,6 +61,9 @@ function losowanie() {
 
     document.getElementById("orzel").style.transform = "rotateY(" + obrot + "deg)";
 
+    const spinDuration = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? 10
+        : 3000;
     setTimeout(function() {
         try {
             if (wynik === wybor) {
@@ -76,5 +79,5 @@ function losowanie() {
             document.getElementById("losuj").disabled = false;
             poleStawki.disabled = false;
         }
-    }, 3000);
+    }, spinDuration);
 }

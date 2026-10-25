@@ -16,12 +16,12 @@
     <header>
         <h1 class="text1">COIN FLIP</h1>
         <div id="div1">
-            <p class="text2"> <a href="Stronaglowna.html">Strona glowna</a> </p>
+            <p class="text2"> <a href="Stronaglowna.html">Strona główna</a> </p>
             <p class="text2"> <a href="bank.html">Bank</a></p>
             <div class="text2 balance">
-                <span>Bilans:</span>
+                <span>Gotówka:</span>
                 <span id="bilans"></span>
-                <button class="balance-reset" type="button" onclick="window.balance.reset()">Reset</button>
+                <button class="balance-reset" type="button" title="Resetuj gotówkę i saldo bankowe" onclick="window.balance.reset()">Reset</button>
                 <span>Rekord:</span>
                 <span id="rekord"></span>
             </div>
@@ -51,11 +51,12 @@
 
         <br>
 
-        <input type="number" id="bet" placeholder="Stawka" min="1" step="1">
+        <label class="visually-hidden" for="bet">Stawka</label>
+        <input type="number" id="bet" placeholder="Stawka" min="1" step="1" required>
 
         <br>
 
-        <button id="losuj" onclick="losowanie()">Losuj</button>
+        <button id="losuj" type="button" onclick="losowanie()">Losuj</button>
     </div>
 
 </div>
@@ -67,7 +68,7 @@
 
     
 
+    <script src="main.js" defer></script>
+    <script src="coinflip.js" defer></script>
 </body>
-<script src="main.js" defer></script>
-<script src="coinflip.js" defer></script>
 </html>

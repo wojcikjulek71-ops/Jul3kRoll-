@@ -87,19 +87,19 @@ function renderBets() {
                 chip.className = "chip";
                 spot.appendChild(chip);
             }
-            chip.textContent = amount.toLocaleString("en-US");
+            chip.textContent = amount.toLocaleString("pl-PL");
         } else if (chip) {
             chip.remove();
         }
     });
-    totalBetDisplay.textContent = getTotalBet().toLocaleString("en-US");
+    totalBetDisplay.textContent = getTotalBet().toLocaleString("pl-PL");
     const canAffordSpin = getTotalBet() <= window.balance.get();
     spinButton.disabled = spinning || bets.size === 0 || !canAffordSpin;
     spinButton.title = bets.size > 0 && !canAffordSpin
-        ? "Bilans jest mniejszy niż suma zakładów. Zmniejsz lub wyczyść zakłady."
+        ? "Masz za mało gotówki na te zakłady. Zmniejsz lub wyczyść zakłady."
         : "";
     betWarningDisplay.textContent = bets.size > 0 && !canAffordSpin
-        ? "Bilans jest mniejszy niż suma zakładów. Zmniejsz lub wyczyść zakłady."
+        ? "Masz za mało gotówki na te zakłady. Zmniejsz lub wyczyść zakłady."
         : "";
 }
 
@@ -114,7 +114,7 @@ function placeBet(key) {
 
     const nextTotal = getTotalBet() + selectedChipValue;
     if (!Number.isSafeInteger(nextTotal) || nextTotal > window.balance.get()) {
-        alert("Suma stawek nie może być większa niż Twój bilans.");
+        alert("Suma stawek nie może być większa niż Twoja gotówka.");
         return;
     }
 
@@ -218,7 +218,7 @@ function spinRoulette() {
     const currentBalance = window.balance.get();
     if (totalStake > currentBalance) {
         betWarningDisplay.textContent =
-            "Bilans jest mniejszy niż suma zakładów. Zmniejsz lub wyczyść zakłady.";
+            "Masz za mało gotówki na te zakłady. Zmniejsz lub wyczyść zakłady.";
         renderBets();
         return;
     }
@@ -235,7 +235,7 @@ function spinRoulette() {
     });
     if (possiblePayouts.some((payout) =>
         !Number.isSafeInteger(currentBalance - totalStake + payout))) {
-        alert("Te zakłady mogą przekroczyć maksymalny obsługiwany bilans.");
+        alert("Te zakłady mogą przekroczyć maksymalną obsługiwaną kwotę gotówki.");
         return;
     }
 
@@ -261,7 +261,10 @@ function spinRoulette() {
     window.balance.set(currentBalance - totalStake);
     wheel.style.transform = "rotate(" + wheelRotation + "deg)";
 
-    window.setTimeout(() => finishSpin(number, totalStake, placedBets), 4100);
+    const spinDuration = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? 10
+        : 4100;
+    window.setTimeout(() => finishSpin(number, totalStake, placedBets), spinDuration);
 }
 
 createWheelNumbers();
@@ -303,4 +306,5 @@ document.getElementById("clear-bets").addEventListener("click", () => {
 });
 spinButton.addEventListener("click", spinRoulette);
 window.addEventListener("storage", renderBets);
+window.addEventListener("balancechange", renderBets);
 renderBets();

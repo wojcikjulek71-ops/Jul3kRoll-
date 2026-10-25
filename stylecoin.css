@@ -1,30 +1,28 @@
 
 #container2 {
-    width: 100%;
-    height: 700px;
-    margin: auto;
-    margin-top: 3%;
-    
-
+    width: min(100%, 700px);
+    height: auto;
+    margin: 0 auto;
 }
 #main2{
     background-color: rgb(75, 72, 72);
     width: 100%;
-    height: 814px;
-    display: flow-root;
+    min-height: calc(100vh - 120px);
+    height: auto;
+    padding: clamp(24px, 5vh, 56px) 16px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 }
 
 #div3 {
     width: 100%;
-    height: 350px;
-    
-
+    min-height: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
-
     perspective: 1000px;
 }
 
@@ -70,8 +68,8 @@
 
 #div4 {
     width: 100%;
-    height: 300px;
-    
+    padding: 16px 0 32px;
+    box-sizing: border-box;
     text-align: center;
 }
 
@@ -108,9 +106,11 @@
 }
 
 #bet {
+    width: min(220px, calc(100% - 36px));
     margin: 15px;
     padding: 15px;
     border-radius: 15px;
+    font: inherit;
 }
 
 #losuj {
@@ -120,4 +120,27 @@
 #losuj:hover {
     background: rgb(85, 83, 85);
     color: white;
+}
+
+#losuj:disabled,
+.przycisk1:disabled,
+#bet:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #orzel {
+        transition-duration: 0.01ms;
+    }
 }

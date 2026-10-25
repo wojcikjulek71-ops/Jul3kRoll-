@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank</title>
+    <link rel="stylesheet" href="styleglowna.css">
+    <link rel="stylesheet" href="bank.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1 class="text1">BANK</h1>
+        <div id="div1">
+            <p class="text2"><a href="Stronaglowna.html">Strona główna</a></p>
+            <p class="text2"><a href="bank.html" aria-current="page">Bank</a></p>
+            <div class="text2 balance">
+                <span>Gotówka:</span>
+                <span id="bilans"></span>
+                <button class="balance-reset" type="button" title="Resetuj gotówkę i saldo bankowe" onclick="window.balance.reset()">Reset</button>
+                <span>Rekord:</span>
+                <span id="rekord"></span>
+            </div>
+        </div>
+        <div id="div2"></div>
+    </header>
+
+    <main id="bank-main">
+        <section class="bank-account" aria-labelledby="bank-heading">
+            <h2 id="bank-heading">Twoje środki</h2>
+            <div class="bank-balances">
+                <p>Gotówka <strong id="bank-cash">1000</strong></p>
+                <p>W banku <strong id="bank-balance">0</strong></p>
+            </div>
+            <p class="bank-note">Przenoś środki między gotówką a bankiem. Salda są zapisywane w tej przeglądarce.</p>
+        </section>
+
+        <div class="bank-transfers">
+            <section class="bank-transfer" aria-labelledby="deposit-heading">
+                <h2 id="deposit-heading">Wpłata</h2>
+                <p>Wpłać gotówkę na konto bankowe.</p>
+                <form id="bank-deposit-form">
+                    <label for="bank-deposit-amount">Kwota wpłaty</label>
+                    <input id="bank-deposit-amount" type="number" min="1" step="1" required>
+                    <button type="submit">Wpłać do banku</button>
+                </form>
+                <p id="bank-deposit-message" class="bank-message" aria-live="polite"></p>
+            </section>
+
+            <section class="bank-transfer" aria-labelledby="withdraw-heading">
+                <h2 id="withdraw-heading">Wypłata</h2>
+                <p>Wypłać środki z banku do gotówki.</p>
+                <form id="bank-withdraw-form">
+                    <label for="bank-withdraw-amount">Kwota wypłaty</label>
+                    <input id="bank-withdraw-amount" type="number" min="1" step="1" required>
+                    <button type="submit">Wypłać z banku</button>
+                </form>
+                <p id="bank-withdraw-message" class="bank-message" aria-live="polite"></p>
+            </section>
+        </div>
+    </main>
+
+    <script src="main.js" defer></script>
+</body>
+</html>

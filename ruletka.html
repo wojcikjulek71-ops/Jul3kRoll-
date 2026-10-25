@@ -17,7 +17,7 @@
         <h1 class="text1">RULETKA EUROPEJSKA</h1>
         <div id="div1">
             <p class="text2"> <a href="Stronaglowna.html">Strona główna</a> </p>
-            <p class="text2"> <a href="">Promocje</a></p>
+            <p class="text2"> <a href="bank.html">Bank</a></p>
             <div class="text2 balance">
                 <span>Bilans:</span>
                 <span id="bilans"></span>
@@ -59,22 +59,29 @@
                 </div>
 
                 <div class="roulette-table">
-                    <button class="bet-spot green zero-bet" type="button" data-bet="number:0" aria-label="Bet on 0">0</button>
-                    <div class="number-grid" id="number-grid" aria-label="Numbers 1 to 36"></div>
-                    <div class="outside-bets" aria-label="Zakłady zewnętrzne">
-                        <button class="bet-spot" type="button" data-bet="low">1-18</button>
-                        <button class="bet-spot red" type="button" data-bet="red">RED</button>
-                        <button class="bet-spot" type="button" data-bet="odd">ODD</button>
-                        <button class="bet-spot" type="button" data-bet="even">EVEN</button>
-                        <button class="bet-spot black" type="button" data-bet="black">BLACK</button>
-                        <button class="bet-spot" type="button" data-bet="high">19-36</button>
+                    <button class="bet-spot green zero-bet" type="button" data-bet="number:0" aria-label="Postaw na 0">0</button>
+                    <div class="number-grid" id="number-grid" aria-label="Liczby od 1 do 36"></div>
+                <div class="column-bets" aria-label="Zakłady na kolumny">
+                    <button class="bet-spot" type="button" data-bet="column:3" aria-label="Postaw na trzecią kolumnę, wypłata 2 do 1">2 to 1</button>
+                    <button class="bet-spot" type="button" data-bet="column:2" aria-label="Postaw na drugą kolumnę, wypłata 2 do 1">2 to 1</button>
+                    <button class="bet-spot" type="button" data-bet="column:1" aria-label="Postaw na pierwszą kolumnę, wypłata 2 do 1">2 to 1</button>
+                </div>
+                <div class="dozen-bets" aria-label="Zakłady na tuziny">
                         <button class="bet-spot dozen-bet" type="button" data-bet="dozen:1">1ST 12</button>
                         <button class="bet-spot dozen-bet" type="button" data-bet="dozen:2">2ND 12</button>
                         <button class="bet-spot dozen-bet" type="button" data-bet="dozen:3">3RD 12</button>
                     </div>
+                    <div class="outside-bets" aria-label="Zakłady zewnętrzne">
+                        <button class="bet-spot" type="button" data-bet="low">1 to 18</button>
+                        <button class="bet-spot" type="button" data-bet="even">EVEN</button>
+                        <button class="bet-spot red" type="button" data-bet="red" aria-label="Postaw na czerwone"><span class="bet-diamond" aria-hidden="true"></span></button>
+                        <button class="bet-spot black" type="button" data-bet="black" aria-label="Postaw na czarne"><span class="bet-diamond" aria-hidden="true"></span></button>
+                        <button class="bet-spot" type="button" data-bet="odd">ODD</button>
+                        <button class="bet-spot" type="button" data-bet="high">19 to 36</button>
+                    </div>
                 </div>
 
-                <p class="roulette-help">Wybierz żeton, a następnie kliknij pole, aby postawić zakład. Numery płacą 35:1, tuziny 2:1, a pozostałe zakłady 1:1. Zakłady pozostają na planszy do czasu ich wyczyszczenia i są pobierane ponownie przy każdym spinie.</p>
+                <p class="roulette-help">Wybierz żeton, a następnie kliknij pole, aby postawić zakład. Numery płacą 35:1, tuziny i kolumny 2:1, a pozostałe zakłady 1:1. Zakłady pozostają na planszy do czasu ich wyczyszczenia i są pobierane ponownie przy każdym spinie.</p>
                 <button id="spin-roulette" type="button">Zakręć kołem</button>
                 <p id="roulette-bet-warning" class="roulette-warning" aria-live="polite"></p>
             </section>

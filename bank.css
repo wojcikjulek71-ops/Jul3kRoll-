@@ -1,0 +1,113 @@
+#bank-main {
+    min-height: calc(100vh - 150px);
+    padding: 40px 20px;
+    box-sizing: border-box;
+    background:
+        radial-gradient(ellipse at center, #237348 0, #155536 55%, #103b28 100%);
+    color: white;
+}
+
+.bank-account,
+.bank-transfer {
+    width: min(900px, 100%);
+    margin: 0 auto;
+    padding: 24px;
+    box-sizing: border-box;
+    border: 2px solid #bd9852;
+    border-radius: 14px;
+    background: rgba(8, 44, 29, 0.72);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
+}
+
+.bank-account h2,
+.bank-transfer h2 {
+    margin-bottom: 14px;
+}
+
+.bank-balances {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.bank-balances p {
+    flex: 1 1 220px;
+    padding: 16px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 18px;
+}
+
+.bank-balances strong {
+    display: block;
+    margin-top: 8px;
+    color: #f1d58a;
+    font-size: 28px;
+}
+
+.bank-note {
+    margin-top: 12px;
+    line-height: 1.5;
+}
+
+.bank-transfers {
+    width: min(900px, 100%);
+    margin: 24px auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.bank-transfer {
+    width: 100%;
+}
+
+.bank-transfer > p {
+    margin-bottom: 16px;
+}
+
+.bank-transfer form {
+    display: grid;
+    gap: 10px;
+}
+
+.bank-transfer input,
+.bank-transfer button {
+    min-height: 44px;
+    padding: 9px 12px;
+    border: 2px solid #b9a36c;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.bank-transfer button {
+    background: #282828;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.bank-transfer button:hover {
+    background: #464646;
+}
+
+.bank-message {
+    min-height: 1.5em;
+    margin: 12px 0 0;
+    color: #f1d58a;
+}
+
+@media (max-width: 700px) {
+    #bank-main {
+        padding: 24px 12px;
+    }
+
+    .bank-account,
+    .bank-transfer {
+        padding: 18px;
+    }
+
+    .bank-transfers {
+        grid-template-columns: 1fr;
+    }
+}

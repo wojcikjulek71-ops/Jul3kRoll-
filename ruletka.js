@@ -56,14 +56,14 @@ function createWheelNumbers() {
 function createNumberGrid() {
     for (let number = 1; number <= 36; number += 1) {
         const cell = document.createElement("button");
-        const row = ((number - 1) % 3) + 1;
+        const row = 3 - ((number - 1) % 3);
         const column = Math.floor((number - 1) / 3) + 1;
         cell.type = "button";
         cell.className = "bet-spot " + numberColor(number);
         cell.dataset.bet = "number:" + number;
         cell.style.gridRow = String(row);
         cell.style.gridColumn = String(column);
-        cell.setAttribute("aria-label", "Bet on number " + number);
+        cell.setAttribute("aria-label", "Postaw na " + number);
         cell.textContent = number;
         numberGrid.appendChild(cell);
     }
@@ -130,6 +130,10 @@ function isWinningBet(key, number) {
         const dozen = Number(key.slice("dozen:".length));
         return number > (dozen - 1) * 12 && number <= dozen * 12;
     }
+    if (key.startsWith("column:")) {
+        const column = Number(key.slice("column:".length));
+        return number > 0 && (number - 1) % 3 + 1 === column;
+    }
 
     switch (key) {
         case "red":
@@ -151,7 +155,7 @@ function isWinningBet(key, number) {
 
 function getPayoutMultiplier(key) {
     if (key.startsWith("number:")) return 35;
-    if (key.startsWith("dozen:")) return 2;
+    if (key.startsWith("dozen:") || key.startsWith("column:")) return 2;
     return 1;
 }
 

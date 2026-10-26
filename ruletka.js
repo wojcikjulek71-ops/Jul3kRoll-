@@ -16,7 +16,6 @@ const historyList = document.getElementById("roulette-history");
 let spinning = false;
 let wheelRotation = 0;
 let selectedChipValue = 10;
-let eraserMode = false;
 
 function numberColor(number) {
     if (number === 0) return "green";
@@ -106,15 +105,15 @@ function renderBets() {
 function placeBet(key) {
     if (spinning) return;
 
-    if (eraserMode) {
-        bets.delete(key);
-        renderBets();
+    const nextTotal = getTotalBet() + selectedChipValue;
+    if (!Number.isSafeInteger(nextTotal)) {
+        betWarningDisplay.textContent =
+            "Suma stawek przekracza maksymalną obsługiwaną kwotę.";
         return;
     }
-
-    const nextTotal = getTotalBet() + selectedChipValue;
-    if (!Number.isSafeInteger(nextTotal) || nextTotal > window.balance.get()) {
-        alert("Suma stawek nie może być większa niż Twoja gotówka.");
+    if (nextTotal > window.balance.get()) {
+        betWarningDisplay.textContent =
+            "Nie możesz dodać tego zakładu — masz za mało gotówki. Zmniejsz stawkę lub doładuj balans.";
         return;
     }
 
@@ -151,6 +150,30 @@ function isWinningBet(key, number) {
         default:
             return false;
     }
+}
+
+function highlightRelatedSpots(key) {
+    document.querySelectorAll(".bet-spot-highlighted").forEach((spot) => {
+        spot.classList.remove("bet-spot-highlighted");
+    });
+
+    if (key.startsWith("number:")) {
+        const number = Number(key.slice("number:".length));
+        document.querySelectorAll("[data-bet]").forEach((spot) => {
+            if (!spot.dataset.bet.startsWith("number:")
+                && isWinningBet(spot.dataset.bet, number)) {
+                spot.classList.add("bet-spot-highlighted");
+            }
+        });
+        return;
+    }
+
+    numberGrid.querySelectorAll("[data-bet]").forEach((spot) => {
+        const number = Number(spot.dataset.bet.slice("number:".length));
+        if (isWinningBet(key, number)) {
+            spot.classList.add("bet-spot-highlighted");
+        }
+    });
 }
 
 function getPayoutMultiplier(key) {
@@ -206,7 +229,6 @@ function finishSpin(number, totalStake, placedBets) {
     document.querySelectorAll("[data-chip]").forEach((chip) => {
         chip.disabled = false;
     });
-    document.getElementById("eraser-tool").disabled = false;
     document.getElementById("clear-bets").disabled = false;
     renderBets();
 }
@@ -235,7 +257,8 @@ function spinRoulette() {
     });
     if (possiblePayouts.some((payout) =>
         !Number.isSafeInteger(currentBalance - totalStake + payout))) {
-        alert("Te zakłady mogą przekroczyć maksymalną obsługiwaną kwotę gotówki.");
+        betWarningDisplay.textContent =
+            "Nie można zakręcić kołem — możliwa wypłata przekracza maksymalną obsługiwaną kwotę.";
         return;
     }
 
@@ -254,7 +277,6 @@ function spinRoulette() {
     document.querySelectorAll("[data-chip]").forEach((chip) => {
         chip.disabled = true;
     });
-    document.getElementById("eraser-tool").disabled = true;
     document.getElementById("clear-bets").disabled = true;
     spinButton.disabled = true;
     resultDisplay.textContent = "Koło się kręci...";
@@ -271,32 +293,26 @@ createWheelNumbers();
 createNumberGrid();
 document.querySelectorAll("[data-bet]").forEach((spot) => {
     spot.addEventListener("click", () => placeBet(spot.dataset.bet));
+    spot.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        if (spinning) return;
+        bets.delete(spot.dataset.bet);
+        renderBets();
+    });
+    spot.addEventListener("mouseenter", () => highlightRelatedSpots(spot.dataset.bet));
+    spot.addEventListener("mouseleave", () => highlightRelatedSpots(""));
+    spot.addEventListener("focus", () => highlightRelatedSpots(spot.dataset.bet));
+    spot.addEventListener("blur", () => highlightRelatedSpots(""));
 });
 document.querySelectorAll("[data-chip]").forEach((chip) => {
     chip.addEventListener("click", () => {
         if (spinning) return;
-        eraserMode = false;
-        const eraserButton = document.getElementById("eraser-tool");
-        eraserButton.classList.remove("wybrany");
-        eraserButton.setAttribute("aria-pressed", "false");
         selectedChipValue = Number(chip.dataset.chip);
         document.querySelectorAll("[data-chip]").forEach((option) => {
             const selected = option === chip;
             option.classList.toggle("wybrany", selected);
             option.setAttribute("aria-pressed", String(selected));
         });
-    });
-});
-document.getElementById("eraser-tool").addEventListener("click", (event) => {
-    if (spinning) return;
-    eraserMode = !eraserMode;
-    const eraserButton = event.currentTarget;
-    eraserButton.classList.toggle("wybrany", eraserMode);
-    eraserButton.setAttribute("aria-pressed", String(eraserMode));
-    document.querySelectorAll("[data-chip]").forEach((chip) => {
-        const selected = !eraserMode && Number(chip.dataset.chip) === selectedChipValue;
-        chip.classList.toggle("wybrany", selected);
-        chip.setAttribute("aria-pressed", String(selected));
     });
 });
 document.getElementById("clear-bets").addEventListener("click", () => {

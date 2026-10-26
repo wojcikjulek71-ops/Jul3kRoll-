@@ -173,29 +173,6 @@
     background-color: #343434;
 }
 
-#eraser-tool{
-    padding: 9px 12px;
-    border: 2px solid #aaa;
-    border-radius: 6px;
-    background: #777;
-    color: white;
-    font: inherit;
-    font-size: 13px;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-#eraser-tool:hover{
-    background: #8a8a8a;
-}
-
-#eraser-tool.wybrany,
-#eraser-tool[aria-pressed="true"]{
-    border-color: #f1d58a;
-    background: #454545;
-    box-shadow: 0 0 0 2px rgba(241, 213, 138, 0.45);
-}
-
 #clear-bets,
 #spin-roulette{
     padding: 10px 16px;
@@ -256,6 +233,12 @@
     z-index: 1;
     filter: brightness(1.3);
     transform: scale(1.04);
+}
+
+.bet-spot-highlighted{
+    z-index: 2;
+    box-shadow: inset 0 0 0 3px #f1d58a;
+    filter: brightness(1.25);
 }
 
 .bet-spot.red,
@@ -420,7 +403,6 @@
 
 #spin-roulette:disabled,
 .bet-spot:disabled,
-#eraser-tool:disabled,
 #clear-bets:disabled,
 .chip-option:disabled{
     cursor: not-allowed;
